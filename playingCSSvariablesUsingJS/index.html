@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updating CSS variables using JS</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        :root{
+            --base: #ffc600;
+            --spacing: 10px;
+            --blur: 10px
+        }
+        body{
+            box-sizing: border-box;
+            text-align: center;
+        }
+        main{
+            width: 100vw;
+            height: 100vh;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #173448;
+        }
+        h2{
+            font-size: 60px;
+            font-weight:700;
+            color: white;
+        }
+        .h1{
+            color: var(--base);
+        }
+        .controls{
+            color: white;
+            padding: 30px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 40px;
+            font-weight: 10;
+            color: rgb(227, 222, 222);
+        }
+        input{
+            height: 5px;
+        }
+        #base-clr{
+            height: 30px;
+            width: 100px;
+        }
+        img{
+            width: 50%;
+            height: 60%;
+            padding: var(--spacing);
+            filter: blur(var(--blur));
+            background: var(--base);
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Update CSS Variables with <span class="h1">JS</span></h2>
+        <div class="controls">
+            <label for="spacing">Spacing:</label>
+            <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+            <label for="blur">Blur:</label>
+            <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+            <label for="base">Base Color:</label>
+            <input type="color" id="base-clr" name="base" value="#ffc600">
+        </div>
+
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+    </main>
+    <script>
+        const inputs = document.querySelectorAll('.controls input')
+
+        function handleUpdate () {
+            const suffix = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            
+        }
+
+        inputs.forEach(input => input.addEventListener('change', handleUpdate))
+        inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
+
+        
+    </script>
+</body>
+</html>
