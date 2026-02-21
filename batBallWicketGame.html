@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            box-sizing: border-box;
+        }
+        main{
+            width: 100vw;
+            height: 100vh;
+            text-align: center;
+        }
+        button{
+            padding: 3px;
+            font-size: large;
+        }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Bat Ball Wicket</h1>
+      <button onclick="gamePlay('ball')">Ball</button>
+      <button onclick="gamePlay('bat')">Bat</button>
+      <button onclick="gamePlay('wicket')">Wicket</button>
+    </main>
+
+    <script>
+        function gamePlay(item) {
+            console.log(`\nYou have choosen ${item}`);
+            let compInput = Math.floor(Math.random()*3 + 1);
+
+            if(compInput === 1 && item === 'ball') console.log('Computer Chooses Ball\nGAME TIED');
+            else if(compInput === 2 && item === 'ball') console.log('Computer Chooses Bat\nCOMP WINS');
+            else if(compInput === 3 && item === 'ball') console.log('Computer Chooses Wicket\nUSER WINS'); 
+
+            else if(compInput === 1 && item === 'bat') console.log('Computer Chooses Ball\nUSER WINS');
+            else if(compInput === 3 && item === 'bat') console.log('Computer Chooses Wicket\nCOMP WINS');
+            else if(compInput === 2 && item === 'bat') console.log('Computer Chooses Bat\nGAME TIED');
+
+
+            if(compInput === 1 && item === 'wicket') console.log('Computer Chooses Ball\nUSER WINS');
+            else if(compInput === 3 && item === 'wicket') console.log('Computer Chooses Wicket\nGAME TIED');
+            else if(compInput === 2 && item === 'wicket') console.log('Computer Chooses Bat\nCOMP WINS'); 
+
+        }
+    </script>
+  </body>
+</html>

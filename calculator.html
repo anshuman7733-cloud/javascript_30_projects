@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        box-sizing: border-box;
+      }
+      main {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgb(34, 32, 32);
+      }
+      .box {
+        margin: auto;
+        width: 24%;
+        background-color: rgb(221, 215, 215);
+        height: 450px;
+        transform: translateY(30px);
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .resultBox {
+        width: 100%;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 10px;
+        font-size: 30px;
+      }
+      .keypad {
+        margin: 6px auto;
+        height: 300px;
+        /* border: 1px solid black; */
+        width: 70%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .signs {
+        width: 60px;
+        height: 60px;
+        margin: 2px 3px;
+        background-color: rgb(231, 228, 228);
+        border: 1px solid black;
+        font-size: 26px;
+      }
+      .signs:hover {
+        transform: scale(1.1);
+        background-color: rgb(217, 213, 213);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="box">
+        <input type="text" name="" class="resultBox" />
+        <div class="keypad">
+          <button class="signs" onclick="display('')" data-key="67">
+            <Kbd>C</Kbd>
+          </button>
+          <button class="signs" onclick="display('1')" data-key="49">
+            <Kbd>1</Kbd>
+          </button>
+          <button class="signs" onclick="display('2')" data-key="50">
+            <Kbd>2</Kbd>
+          </button>
+          <button class="signs" onclick="display('+')" data-key="187">
+            <Kbd>+</Kbd>
+            </button
+          ><button class="signs" onclick="display(3)" data-key="51">
+            <Kbd>3</Kbd>
+          </button>
+          <button class="signs" onclick="display(4)" data-key="52">
+            <Kbd>4</Kbd>
+            </button
+          ><button class="signs" onclick="display('-')" data-key="189">
+            <Kbd>-</Kbd>
+          </button>
+          <button class="signs" onclick="display(5)" data-key="53">
+            <Kbd>5</Kbd>
+            </button
+          ><button class="signs" onclick="display(6)" data-key="54">
+            <Kbd>6</Kbd>
+          </button>
+          <button class="signs" onclick="display('*')" data-key="56">
+            <Kbd>*</Kbd>
+          </button>
+          <button class="signs" onclick="display(7)" data-key="55">
+            <Kbd>7</Kbd>
+          </button>
+          <button class="signs" onclick="display(8)" data-key="56">
+            <Kbd>8</Kbd>
+          </button>
+          <button class="signs" onclick="display('/')" data-key="191">
+            <Kbd>/</Kbd>
+          </button>
+          <button class="signs" onclick="display('=')" data-key="13">
+            <Kbd>=</Kbd>
+          </button>
+          <button class="signs" onclick="display(9)" data-key="57">
+            <Kbd>9</Kbd>
+          </button>
+          <button class="signs" onclick="display(0)" data-key="48">
+            <Kbd>0</Kbd>
+          </button>
+          <button class="signs" onclick="display('.')" data-key="190">
+            <Kbd>.</Kbd>
+          </button>
+          <button class="signs" onclick="display('delete')" data-key='8'>
+            <kbd>DEL</kbd>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      let currentDisplay = " ";
+      function display(a) {
+        
+        if (a === "") currentDisplay = "";
+        else if(a === '=') {
+          currentDisplay = " " + eval(currentDisplay)
+          
+        } else if(a === 'delete') currentDisplay--;
+        else currentDisplay += a;
+        document.querySelector(".resultBox").value = currentDisplay;
+      }
+
+      document.addEventListener('keydown', (e) => {
+
+        const btn = document.querySelector(`.signs[data-key="${e.keyCode}"]`)
+        if(btn) btn.click();
+        if(e.keyCode === '13') {
+          e.preventDefault()
+          display('=')
+        }
+      })
+      
+    </script>
+  </body>
+</html>

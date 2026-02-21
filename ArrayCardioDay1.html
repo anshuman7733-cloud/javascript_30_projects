@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const investors = [
+        { first: "Warren", last: "Buffett", born: 1930, passed: 2050 },
+        { first: "Benjamin", last: "Graham", born: 1894, passed: 1976 },
+        { first: "Peter", last: "Lynch", born: 1944, passed: 2070 },
+        { first: "Charlie", last: "Munger", born: 1924, passed: 2023 },
+        { first: "John", last: "Bogle", born: 1929, passed: 2019 },
+        { first: "Rakesh", last: "Jhunjhunwala", born: 1960, passed: 2022 },
+        { first: "Ray", last: "Dalio", born: 1949, passed: 2080 },
+      ];
+
+      // 1. filter the list of investors for those who were born in 1500
+      const fifteen = investors.filter(
+        (investor) => investor.born >= 900 && investor.born < 2000,
+      );
+      console.table(fifteen);
+
+      // 2. give us an array of last and first name
+      const fullnames = investors.map(
+        (investor) => investor.first + " " + investor.last,
+      );
+      console.log(fullnames);
+
+      //3. sort the investors as birthday in oldest to youngest
+      const sorted = investors.sort((a, b) => a.born > b.born ? 1 : -1);
+      console.table(sorted);
+
+      //4. how many years did all the investors live
+      const lived = investors.reduce((total, investor) => total + (investor.passed - investor.born), 0)
+      console.log(lived);
+
+      //5. sort the investors by years lived
+      const sortedInvestors = investors.sort((a, b) => {
+        const lastGuy = a.passed - a.born;
+        const currGuy = b.passed - b.born;
+        return lastGuy > currGuy ? -1 : 1;
+      })
+
+      console.table(sortedInvestors);
+      
+
+      //6. sort guys alphabetically on last name
+      
+
+      //7. sum up the instances of each of these 
+      const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+
+      const sumUp = data.reduce((obj, item) => {
+        if(!obj[item]) obj[item] = 0;
+        obj[item]++;
+        return obj
+      } ,{})
+      console.log(sumUp);
+      
+      
+    </script>
+  </body>
+</html>
